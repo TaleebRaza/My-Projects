@@ -9,20 +9,27 @@ Think of it like a digital workshop — full of small creations, big ideas, and 
 ------- What's Inside -------
 
 🎮 Games (like Pong, Snake, etc.)
+
 ⚙️ Utilities (small scripts and tools)
+
 🌱 Learning Projects (practice and exercises)
+
 🚧 Work in Progress (experiments that may grow bigger)
 
 ------- Tech Stack -------
 
 Python
+
 Turtle (for graphics)
+
 Other libraries depending on the project
 
 ------- Goals -------
 
 Keep practicing by building fun projects
+
 Improve clean code structure (classes, OOP, modules)
+
 Turn small experiments into polished apps
 
 ------- Contributions -------
