@@ -4,11 +4,11 @@ ALIGN = "center"
 FONT = ("Arial", 10, "bold")
 
 class Scoreboard(Turtle):
-    def __init__(self, paddle, gap_from_edges, height, width, score):
+    def __init__(self, paddle: int, gap_from_edges, height, width):
         super().__init__()
 
         self.screen_height, self.screen_width = height, width
-        self.score = score
+        self.score = 0
         self.initialize_score(gap_from_edges, paddle)
 
     def initialize_score(self, gap_from_edges, paddle):
