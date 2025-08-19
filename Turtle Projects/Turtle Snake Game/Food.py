@@ -1,34 +1,44 @@
 from turtle import Turtle
-from random import randint
+import random
+
 
 class Food(Turtle):
     """
-    Represents the food object in a snake game.
-    Inherits from the Turtle class and is positioned randomly on the screen.
+    Represents the food object in the Snake game.
+    Inherits from Turtle to use shapes and coordinates easily.
+
+    Responsibilities:
+    - Appear as a small colored dot
+    - Randomly relocate on the screen when eaten
     """
 
     def __init__(self):
         """
-        Initialize the food object with a small blue circle shape
-        and place it at the default starting position.
+        Initialize the food object:
+        - Shape: circle
+        - Color: blue
+        - Size: scaled down (0.5 x 0.5)
+        - No pen trail
+        - Spawn at a random position initially
         """
         super().__init__()
         self.shape("circle")
-        self.penup()
-        self.shapesize(stretch_len=0.5, stretch_wid=0.5)
         self.color("blue")
+        self.shapesize(stretch_len=0.5, stretch_wid=0.5)  # Make it smaller
+        self.penup()
         self.speed("fastest")
-        self.goto(100, 100)
+        self.refresh_position(800, 800)  # Default screen size
 
     def refresh_position(self, height, width):
         """
-        Move the food to a new random position within the given boundaries.
+        Move the food to a random position within screen bounds.
+        Ensures food does not appear outside the playable area.
 
         Args:
-            height (int): Height of the game screen in pixels.
-            width (int): Width of the game screen in pixels.
+            height (int): Height of the game window
+            width (int): Width of the game window
         """
-        self.goto(
-            randint((-width // 2) + 20, (width // 2) - 20),
-            randint((-height // 2) + 20, (height // 2) - 20)
-        )
+        # Generate random x, y positions within boundaries
+        rand_x = random.randint(-width // 2 + 20, width // 2 - 20)
+        rand_y = random.randint(-height // 2 + 20, height // 2 - 20)
+        self.goto(rand_x, rand_y)
