@@ -4,8 +4,8 @@ from datetime import datetime
 import smtplib
 
 # ************************** Constants ************************** #
-MY_LATITUDE = 33.771542
-MY_LONGITUDE = 72.751091
+MY_LATITUDE = float number
+MY_LONGITUDE = float number
 MY_EMAIL = "randommail@gmail.com"
 MY_PASSWORD = "abc123()"
 
