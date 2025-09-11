@@ -1,12 +1,27 @@
 # ➖➖➖➖➖➖➖➖➖➖➖ Importing Modules ➖➖➖➖➖➖➖➖➖➖➖
 import requests
+import sys
+import os
 from random import randint
 from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtGui import QIcon
 from habit_tracker_GUI import Ui_MainWindow
 from load_data import DataLoader
 
 
 # ➖➖➖➖➖➖➖➖➖➖➖ Helper Function ➖➖➖➖➖➖➖➖➖➖➖
+def resource_path(relative_path):
+    """Get the absolute path to the bundled resource file."""
+    try:
+        # PyInstaller creates a temporary folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        # In a normal Python script, use the current directory
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 def get_response(url, json, header=None):
     """
     Sends a POST request and returns a string with the status or error message.
@@ -73,15 +88,28 @@ class HabitTracker(Ui_MainWindow, QMainWindow):
         """
         super().__init__()
         self.setupUi(self)
+        self.setWindowTitle("Pixela Graph Maker")
+        # 🟢 Use the helper function to set the window icon
+        self.setWindowIcon(QIcon(resource_path("logo.png")))
+
+        self.response_output_box.setText("Please Read Instructions carefully."
+                                         "\n1. Add/Create Account."
+                                         "\n2. Add/Create a graph to update"
+                                         "\n3. Use the date and quantity slider to update the graph with a value."
+                                         "\n\nNote: Read the result of your actions here.")
 
         # Initialize variables
         self.username = ""
         self.token = ""
+        # 🟢 The DataLoader.py is also a data file, so it needs to be imported using the resource_path
+        # You would need to update the `load_data.py` file to handle file paths properly as well,
+        # but for this example, we'll assume it doesn't try to open external files itself.
         self.data_loader = DataLoader()
 
         # Attempt to load and apply UI stylesheet
         try:
-            with open(file="ui_stylesheet.qss", mode="r") as stylesheetfile:
+            # 🟢 Use the helper function to open the stylesheet file
+            with open(file=resource_path("ui_stylesheet.qss"), mode="r") as stylesheetfile:
                 stylesheet = stylesheetfile.read()
                 self.setStyleSheet(stylesheet)
         except FileNotFoundError:
@@ -302,6 +330,7 @@ if __name__ == '__main__':
 
     # Instantiate the HabitTracker class
     window = HabitTracker()
+
 
     # Show the window
     window.show()
