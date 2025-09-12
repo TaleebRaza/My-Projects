@@ -21,6 +21,7 @@ Think of it like a digital workshop — full of small creations, big ideas, and 
 Python
 
 Turtle (for graphics)
+Qt Framework (For GUIs)
 
 Other libraries depending on the project
 
